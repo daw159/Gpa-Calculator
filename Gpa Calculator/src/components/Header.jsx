@@ -3,7 +3,7 @@ import { GraduationCap, Sun } from "lucide-react";
 function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="relative w-full h-16 px-10  mx-4 flex items-center justify-between">
+      <div className="relative w-full h-16 px-16 flex items-center justify-between">
 
         {/* Logo - far left */}
         <div className="flex items-center gap-2">
