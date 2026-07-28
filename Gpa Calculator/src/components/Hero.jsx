@@ -1,6 +1,6 @@
 import GPAGauge from "./GPAGuage"
 
-function Hero() {
+function Hero({gpa}) {
   return (
    <section id="home" className="w-full px-16 py-16 flex items-center justify-between">
       <div className="max-w-xl">
@@ -14,7 +14,7 @@ function Hero() {
         </p>
       </div>
 
-      <GPAGauge gpa={3.54} />
+      <GPAGauge gpa={gpa} />
     </section>
   )
 }

@@ -50,7 +50,7 @@ function CourseForm({ onAddCourse }) {
 
     return (
         <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-6 flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-indigo-900 font-bold text-lg">
+            <div className="flex items-center gap-2 text-indigo-900 font-bold text-xl">
                 <FilePlus2 size={20} />
                 Add New Course
             </div>

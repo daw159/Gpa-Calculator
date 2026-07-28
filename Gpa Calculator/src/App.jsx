@@ -5,6 +5,10 @@ import StatsCards from "./components/StatsCards"
 import SemesterTabs from "./components/SemesterTabs"
 import CourseForm from "./components/CourseForm"
 import CourseTable from "./components/CourseTable"
+import { calculateGPA } from "./utils/calculateGPA"
+import GradeScale from "./components/GradeScale"
+import About from "./components/About"
+import Footer from "./components/Footer"
 
 const initialSemesters = [
   { id: "sem-1", name: "Semester 1", courses: [] },
@@ -23,6 +27,13 @@ function App() {
   const activeSemester = semesters.find(
     (semester) => semester.id === activeSemesterId
   )
+
+
+    // Every course, from every semester, in one flat list
+  const allCourses = semesters.flatMap((semester) => semester.courses)
+  const { totalCredits, gpa: cgpa } = calculateGPA(allCourses)
+  const totalCourses = allCourses.length
+
 
   function handleAddSemester() {
     if (semesters.length >= MAX_SEMESTERS) {
@@ -77,8 +88,12 @@ function App() {
   return (
     <div>
       <Header />
-      <Hero />
-      <StatsCards />
+      <Hero gpa={cgpa} />
+      <StatsCards
+        cgpa={cgpa}
+        currentSemesterName={activeSemester.name}
+        totalCredits={totalCredits}
+        totalCourses={totalCourses} />
 
       <SemesterTabs
         semesters={semesters}
@@ -92,6 +107,10 @@ function App() {
         <CourseForm onAddCourse={handleAddCourse} />
         <CourseTable courses={activeSemester.courses} onDeleteCourse={handleDeleteCourse} />
       </section>
+
+      <GradeScale/>
+      <About/>
+      <Footer/>
     </div>
   )
 }
