@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { FilePlus2 } from "lucide-react"
 import Button from "./Button"
 import { GRADE_POINTS } from "../data/gradeScale"
+import { FilePlus2, RotateCcw } from "lucide-react"
 
-function CourseForm({ onAddCourse }) {
+function CourseForm({ onAddCourse,onResetSemester }) {
     const [name, setName] = useState("")
     const [credits, setCredits] = useState("")
     const [grade, setGrade] = useState("")   // blank placeholder — user must actively choose
@@ -31,7 +31,7 @@ function CourseForm({ onAddCourse }) {
         console.log("Calling onAddCourse")
 
 
-        console.log("Calling onAddCourse");
+
         console.log(onAddCourse);
 
         onAddCourse({
@@ -93,6 +93,14 @@ function CourseForm({ onAddCourse }) {
             </div>
 
             <Button type="submit" variant="primary" icon={FilePlus2}>Add Course</Button>
+            <button
+                type="button"
+                onClick={onResetSemester}
+                className="flex items-center justify-center gap-2 text-sm text-red-500 hover:text-red-700 mt-1"
+            >
+                <RotateCcw size={14} />
+                Reset Semester
+            </button>
         </form>
     )
 }
