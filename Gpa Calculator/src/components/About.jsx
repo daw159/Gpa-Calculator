@@ -1,57 +1,75 @@
-import { CheckCircle2, Calculator, LayoutDashboard } from "lucide-react"
-import aboutImg from "../assets/aboutimg.jpg"
+import { CheckCircle2, Calculator, LayoutDashboard } from "lucide-react";
+import aboutImg from "../assets/images/aboutimg.jpg";
+
+const FEATURES = [
+  {
+    icon: Calculator,
+    title: "Automatic Calculations",
+    text: "Semester GPA and overall CGPA update instantly as you add or remove courses.",
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Multi-Semester Tracking",
+    text: "Organize courses across up to 10 semesters, switch between them anytime.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Standard 4.0 Grading Scale",
+    text: "Built on a transparent, editable grade-to-points reference.",
+  },
+];
 
 function About() {
   return (
-    <section id="about" className="w-full px-16 mt-16 grid grid-cols-2 gap-12 items-center">
+    <section
+      id="about"
+      className="mx-auto mt-12 grid w-full max-w-300 grid-cols-1 items-center gap-8 px-4 md:px-6 lg:mt-16 lg:grid-cols-2 lg:gap-12 lg:px-12"
+    >
       <img
-        src={aboutImg}
+        src={aboutImg.url}
         alt="Student working on academic goals"
-        className="w-full h-80 object-cover rounded-2xl"
+        loading="lazy"
+        className="h-56 w-full rounded-2xl object-cover sm:h-72 lg:h-80"
       />
 
       <div>
-        <span className="text-xs font-mono font-medium text-teal-700 bg-teal-100 px-3 py-1 rounded-full">
+        <span className="rounded-full bg-accent-container px-3 py-1 font-mono text-xs font-medium text-accent">
           ABOUT ACADEMIC CLARITY
         </span>
 
-        <h3 className="text-3xl font-extrabold text-gray-900 mt-4">
-          Built to make GPA tracking <span className="text-blue-700">effortless</span>
-        </h3>
+        <h2 className="mt-4 text-2xl font-extrabold text-on-surface sm:text-3xl">
+          Built to make GPA tracking{" "}
+          <span className="text-primary">effortless</span>
+        </h2>
 
-        <p className="mt-4 text-gray-600 text-base">
-          Academic Clarity handles the arithmetic behind semester GPAs and
+        <p className="mt-4 text-base text-on-surface-variant">
+          GradeMate handles the arithmetic behind semester GPAs and
           overall CGPA, so you can organize your courses by semester, enter
-          grades, and instantly see accurate results — no spreadsheets,
-          no manual calculation, no guesswork.
+          grades, and instantly see accurate results — no spreadsheets, no
+          manual calculation, no guesswork.
         </p>
 
         <div className="mt-6 flex flex-col gap-4">
-          <div className="flex items-start gap-3">
-            <Calculator size={20} className="text-teal-600 mt-0.5" />
-            <div>
-              <p className="font-bold text-gray-900 text-sm">Automatic Calculations</p>
-              <p className="text-sm text-gray-500">Semester GPA and overall CGPA update instantly as you add or remove courses.</p>
+          {FEATURES.map((feature) => (
+            <div key={feature.title} className="flex items-start gap-3">
+              <feature.icon
+                size={20}
+                className="mt-0.5 shrink-0 text-accent"
+              />
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-on-surface">
+                  {feature.title}
+                </p>
+                <p className="text-sm text-on-surface-variant">
+                  {feature.text}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <LayoutDashboard size={20} className="text-teal-600 mt-0.5" />
-            <div>
-              <p className="font-bold text-gray-900 text-sm">Multi-Semester Tracking</p>
-              <p className="text-sm text-gray-500">Organize courses across up to 10 semesters, switch between them anytime.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <CheckCircle2 size={20} className="text-teal-600 mt-0.5" />
-            <div>
-              <p className="font-bold text-gray-900 text-sm">Standard 4.0 Grading Scale</p>
-              <p className="text-sm text-gray-500">Built on a transparent, editable grade-to-points reference.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;

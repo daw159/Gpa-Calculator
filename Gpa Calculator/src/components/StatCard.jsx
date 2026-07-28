@@ -1,17 +1,21 @@
-
-
 function StatCard({ icon: Icon, iconBg, iconColor, label, value }) {
   return (
-    <div className="flex items-center gap-4 bg-gray-50 rounded-2xl p-5">
-      <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${iconBg}`}>
+    <div className="glass flex items-center gap-4 rounded-2xl p-4 sm:p-5">
+      <div
+        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${iconBg}`}
+      >
         <Icon size={20} className={iconColor} />
       </div>
-      <div>
-        <p className="text-xs font-mono text-gray-500">{label}</p>
-        <p className="text-2xl font-bold text-gray-900">{value}</p>
+      <div className="min-w-0">
+        <p className="truncate font-mono text-xs text-on-surface-variant">
+          {label}
+        </p>
+        <p className="truncate font-mono text-xl font-bold text-on-surface sm:text-2xl">
+          {value}
+        </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default StatCard
+export default StatCard;

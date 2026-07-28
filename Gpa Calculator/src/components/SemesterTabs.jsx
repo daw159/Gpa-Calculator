@@ -1,36 +1,43 @@
-import { Plus, FileDown } from "lucide-react"
+import { Plus, FileDown } from "lucide-react";
 
-function SemesterTabs({ semesters, activeSemesterId, onSelectSemester, onAddSemester, maxSemesters, onExportPDF }) {
-  const limitReached = semesters.length >= maxSemesters
+function SemesterTabs({
+  semesters,
+  activeSemesterId,
+  onSelectSemester,
+  onAddSemester,
+  maxSemesters,
+  onExportPDF,
+}) {
+  const limitReached = semesters.length >= maxSemesters;
 
   return (
-    <section className="w-full px-16 mt-10 flex items-center justify-between">
-      <div className="flex items-center gap-3">
+    <section className="mx-auto mt-8 flex w-full max-w-300 flex-col gap-4 px-4 md:px-6 lg:mt-10 lg:flex-row lg:items-center lg:justify-between lg:px-12">
+      <div className="-mx-4 flex snap-x items-center gap-3 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0">
         {semesters.map((semester) => {
-          const isActive = semester.id === activeSemesterId
+          const isActive = semester.id === activeSemesterId;
 
           return (
             <button
               key={semester.id}
               onClick={() => onSelectSemester(semester.id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`shrink-0 snap-start rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-indigo-900 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  ? "bg-primary text-on-primary"
+                  : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
               }`}
             >
               {semester.name}
             </button>
-          )
+          );
         })}
 
         <button
           onClick={onAddSemester}
           disabled={limitReached}
-          className={`w-9 h-9 rounded-full border border-dashed flex items-center justify-center transition-colors ${
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-dashed transition-colors ${
             limitReached
-              ? "border-gray-200 text-gray-300 cursor-not-allowed"
-              : "border-gray-300 text-gray-500 hover:border-gray-400 hover:text-gray-700"
+              ? "cursor-not-allowed border-outline/50 text-on-surface-variant/40"
+              : "border-accent text-accent hover:bg-accent-container"
           }`}
           aria-label={limitReached ? "Semester limit reached" : "Add semester"}
         >
@@ -40,13 +47,13 @@ function SemesterTabs({ semesters, activeSemesterId, onSelectSemester, onAddSeme
 
       <button
         onClick={onExportPDF}
-        className="flex items-center gap-2 text-sm font-medium text-white bg-indigo-950 hover:bg-blue-200 px-4 py-2 rounded-lg transition-colors"
+        className="flex shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-on-primary transition-all hover:shadow-[0_0_18px_var(--accent)] hover:brightness-110"
       >
         <FileDown size={16} />
         Export PDF
       </button>
     </section>
-  )
+  );
 }
 
-export default SemesterTabs
+export default SemesterTabs;
