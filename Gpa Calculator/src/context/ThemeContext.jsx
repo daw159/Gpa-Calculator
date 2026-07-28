@@ -15,7 +15,7 @@ export function ThemeProvider({ children }) {
     if (saved) {
       setIsDark(saved === "dark");
     } else {
-      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      setIsDark(true);   // default new visitors to dark mode instead of system preference
     }
   }, []);
 
