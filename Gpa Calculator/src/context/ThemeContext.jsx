@@ -1,32 +1,41 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState, useEffect } from "react";
 
-export const ThemeContext = createContext()
+export const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // Check localStorage first, fall back to system preference, default to light
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("theme")
-    if (saved) return saved === "dark"
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-  })
+  // Start as light. The real value is read from localStorage after the
+  // component mounts (see useEffect below) so the server and the browser
+  // always render the same thing on the first paint.
+  const [isDark, setIsDark] = useState(false);
 
-  // Whenever isDark changes: toggle the .dark class on <html>, save the choice
+  // Runs once on mount: read the saved choice, or fall back to the
+  // system preference.
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+      setIsDark(saved === "dark");
+    } else {
+      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
+
+  // Whenever isDark changes: toggle the .dark class on <html> and save it.
   useEffect(() => {
     if (isDark) {
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", isDark ? "dark" : "light")
-  }, [isDark])
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   function toggleTheme() {
-    setIsDark((prev) => !prev)
+    setIsDark((prev) => !prev);
   }
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
-  )
+  );
 }
