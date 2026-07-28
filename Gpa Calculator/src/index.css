@@ -4,7 +4,31 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --color-surface: #f8f9fe;
+  --color-surface-container: #eceef3;
+  --color-on-surface: #191c1f;
+  --color-on-surface-variant: #474551;
+  --color-primary: #27227b;
+  --color-on-primary: #ffffff;
+  --color-secondary: #00696e;
+  --color-outline: #c8c5d3;
+}
 
-/* *{
-  background-color: azure;
-} */
+.dark {
+  --color-surface: #14161f;
+  --color-surface-container: #1e2029;
+  --color-on-surface: #eff0f5;
+  --color-on-surface-variant: #b3b4c7;
+  --color-primary: #6f6cf0;
+  --color-on-primary: #ffffff;
+  --color-secondary: #3edae3;
+  --color-outline: #3a3d4a;
+}
+
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

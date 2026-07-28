@@ -62,7 +62,7 @@ function CourseTable({ courses, onDeleteCourse }) {
                     <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
                         <div className="flex gap-6 text-xs font-mono text-gray-600">
                             <span>TOTAL POINTS <strong className="text-gray-900">{totalPoints.toFixed(1)}</strong></span>
-                            <span>TOTAL UNITS <strong className="text-gray-900">{totalCredits.toFixed(1)}</strong></span>
+                            <span>TOTAL Credits <strong className="text-gray-900">{totalCredits.toFixed(1)}</strong></span>
                         </div>
                         <span className="text-sm font-mono bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-bold">
                             Semester GPA: {gpa.toFixed(2)}
