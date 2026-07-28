@@ -1,5 +1,5 @@
 import { CheckCircle2, Calculator, LayoutDashboard } from "lucide-react";
-import aboutImg from "../assets/images/aboutimg.jpg";
+import aboutImg from "../assets/aboutimg.jpg";
 
 const FEATURES = [
   {
@@ -26,7 +26,7 @@ function About() {
       className="mx-auto mt-12 grid w-full max-w-300 grid-cols-1 items-center gap-8 px-4 md:px-6 lg:mt-16 lg:grid-cols-2 lg:gap-12 lg:px-12"
     >
       <img
-        src={aboutImg.url}
+        src={aboutImg}
         alt="Student working on academic goals"
         loading="lazy"
         className="h-56 w-full rounded-2xl object-cover sm:h-72 lg:h-80"

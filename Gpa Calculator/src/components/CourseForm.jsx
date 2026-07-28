@@ -84,13 +84,11 @@ function CourseForm({ onAddCourse, onResetSemester, onResetAll }) {
           <select
             value={grade}
             onChange={(e) => setGrade(e.target.value)}
-            className={`${inputClass} bg-surface font-mono`}
+            className="mt-1 w-full rounded-lg border border-outline bg-surface text-on-surface px-3 py-2 text-sm font-mono focus:outline-none focus:border-accent"
           >
-            <option value="" disabled>
-              Select
-            </option>
+            <option value="" disabled className="bg-surface text-on-surface">Select</option>
             {Object.keys(GRADE_POINTS).map((letter) => (
-              <option key={letter} value={letter}>
+              <option key={letter} value={letter} className="bg-surface text-on-surface">
                 {letter}
               </option>
             ))}

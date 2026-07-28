@@ -1,34 +1,127 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
 
-html {
-  scroll-behavior: smooth;
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * GradeMate design system.
+ *
+ * Every colour lives in :root (light) and .dark (dark) as a plain CSS
+ * variable. The @theme inline block turns each one into a Tailwind class,
+ * so `--surface` becomes `bg-surface`, `--primary` becomes `text-primary`,
+ * and so on. Never hardcode colours like `bg-gray-100` in a component —
+ * always use these token classes so dark mode keeps working.
+ */
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-container: var(--accent-container);
+  --color-lavender: var(--lavender);
+  --color-outline: var(--outline);
+  --color-danger: var(--danger);
+
+  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 :root {
-  --color-surface: #f8f9fe;
-  --color-surface-container: #eceef3;
-  --color-on-surface: #191c1f;
-  --color-on-surface-variant: #474551;
-  --color-primary: #27227b;
-  --color-on-primary: #ffffff;
-  --color-secondary: #00696e;
-  --color-outline: #c8c5d3;
+  --surface: #f8f9fe;
+  --surface-container: #eceef3;
+  --surface-container-high: #e7e8ed;
+  --on-surface: #191c1f;
+  --on-surface-variant: #474551;
+  --primary: #3e3b92;
+  --on-primary: #ffffff;
+  --primary-container: #e2dfff;
+  --on-primary-container: #27227b;
+  --accent: #00c2cb;
+  --on-accent: #00393b;
+  --accent-container: #ccf3f5;
+  --lavender: #e6e6fa;
+  --outline: #c8c5d3;
+  --danger: #ba1a1a;
+
+  /* Glassmorphism (level 1 cards) */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow-glass: 0 8px 32px rgba(62, 59, 146, 0.08);
+
+  /* Blurred background blobs on the page canvas */
+  --blob-indigo: rgba(62, 59, 146, 0.18);
+  --blob-teal: rgba(0, 194, 203, 0.18);
 }
 
 .dark {
-  --color-surface: #14161f;
-  --color-surface-container: #1e2029;
-  --color-on-surface: #eff0f5;
-  --color-on-surface-variant: #b3b4c7;
-  --color-primary: #6f6cf0;
-  --color-on-primary: #ffffff;
-  --color-secondary: #3edae3;
-  --color-outline: #3a3d4a;
+  --surface: #0d0f1c;
+  --surface-container: #171a2b;
+  --surface-container-high: #1f2338;
+  --on-surface: #eff0f5;
+  --on-surface-variant: #a8aabf;
+  --primary: #8b88ff;
+  --on-primary: #0f0267;
+  --primary-container: #2a2a63;
+  --on-primary-container: #d9d8ff;
+  --accent: #3edae3;
+  --on-accent: #002022;
+  --accent-container: #10404a;
+  --lavender: #262646;
+  --outline: #3a3d4a;
+  --danger: #ff8f86;
+
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  --blob-indigo: rgba(139, 136, 255, 0.16);
+  --blob-teal: rgba(62, 218, 227, 0.14);
 }
 
+/* Frosted glass card — the main surface style of the app. */
+@utility glass {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-glass);
+}
 
-body {
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Slightly stronger version for floating / highlighted panels. */
+@utility glass-strong {
+  background-color: var(--surface-container);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-glass);
+}
+
+@layer base {
+  * {
+    border-color: var(--outline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: var(--font-display);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
 }
