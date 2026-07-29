@@ -232,10 +232,7 @@ The app is a static Vite build — it deploys anywhere that serves static files.
 - [x] localStorage auto-save
 - [x] PDF transcript export
 - [x] Responsive layout
-- [ ] Target-GPA planner ("what do I need next semester?")
-- [ ] Multiple grading scales (4.0 / 5.0 / percentage)
-- [ ] CSV import & export
-- [ ] Optional cloud sync
+
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
 
@@ -261,7 +258,7 @@ Released under the **MIT License** — free to use, modify and share.
 
 <br>
 
-**Built with React, Tailwind CSS and a lot of coffee ☕**
+**Built with React, Tailwind CSS **
 
 <a href="https://github.com/daw159"><img src="https://img.shields.io/badge/@daw159-3E3B92?style=for-the-badge&logo=github&logoColor=white" alt="daw159" /></a>
 
